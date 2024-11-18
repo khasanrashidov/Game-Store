@@ -1,0 +1,22 @@
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+app-header,
+app-footer {
+  flex-shrink: 0;
+}
+
+router-outlet {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+app-sidebar {
+  background: oklch(var(--b2));
+  border-right: 1px solid oklch(var(--nc));
+}

@@ -1,0 +1,26 @@
+.drawer-button {
+  position: fixed;
+  top: 140px;
+  right: 20px;
+  z-index: 1;
+}
+
+.close {
+  position: fixed;
+  right: 20px;
+  top: 200px;
+}
+
+.menu {
+  position: fixed;
+  @media (max-width: 1024px) {
+    margin-top: 60px;
+  }
+}
+
+.drawer-side {
+  @media (max-width: 1024px) {
+    z-index: 1000; /* Ensure the sidebar is on top */
+    place-self: auto !important;
+  }
+}

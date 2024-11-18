@@ -1,0 +1,27 @@
+.card {
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05); // Slightly enlarges the card
+    background: #d6d6d6; // Slightly darkens the background
+    box-shadow: 20px 20px 40px rgba(190, 190, 190, 0.8),
+      -20px -20px 40px rgba(255, 255, 255, 0.8); // Enhances the shadow
+  }
+
+  // Optional: Add animation on card load
+  animation: fadeIn 0.6s ease-in-out;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

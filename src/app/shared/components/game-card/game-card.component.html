@@ -1,0 +1,22 @@
+<div class="card glass w-60">
+  <figure>
+    <img
+      src="https://placehold.co/250x350?font=oswald"
+      alt="car!"
+      width="240px"
+      height="142px"
+    />
+  </figure>
+  <div class="card-body p-4">
+    <div class="tooltip tooltip-bottom" [attr.data-tip]="game?.name">
+      <h3
+        class="card-title whitespace-nowrap overflow-hidden text-ellipsis block"
+      >
+        {{ game?.name }}
+      </h3>
+    </div>
+    <div class="card-actions justify-center">
+      <button class="btn btn-neutral btn-outline w-48">Learn more</button>
+    </div>
+  </div>
+</div>
