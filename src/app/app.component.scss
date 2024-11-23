@@ -5,6 +5,16 @@
   padding-top: 60px;
 }
 
+.content {
+  margin-top: 20px;
+  margin-left: 250px;
+
+  @media (max-width: 1024px) {
+    margin-top: 20px;
+    margin-left: 0;
+  }
+}
+
 app-header,
 app-footer {
   flex-shrink: 0;
