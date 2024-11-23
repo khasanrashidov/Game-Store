@@ -7,9 +7,10 @@
 
 .content {
   margin-top: 20px;
+  margin-bottom: 20px;
   margin-left: 250px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     margin-top: 20px;
     margin-left: 0;
   }

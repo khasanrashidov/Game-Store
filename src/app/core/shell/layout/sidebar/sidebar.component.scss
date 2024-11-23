@@ -14,7 +14,7 @@
 .menu {
   position: fixed;
   border-right: 1px solid oklch(var(--nc));
-  @media (max-width: 1024px) {
+  @media (max-width: 1023px) {
     margin-top: 60px;
   }
 }

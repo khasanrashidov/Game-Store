@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { GameModel } from '../../../core/models/game/game.model';
 
 @Component({
@@ -8,4 +9,16 @@ import { GameModel } from '../../../core/models/game/game.model';
 })
 export class GameCardComponent {
   @Input() game: GameModel | null = null;
+
+  constructor(private router: Router) { }
+
+  addToCart(gameId: string | undefined): void {
+    console.log('Game added to cart:', gameId);
+  }
+
+  navigateToGame(gameId: string | undefined): void {
+    if (gameId) {
+      this.router.navigate(['/game/view', gameId]);
+    }
+  }
 }

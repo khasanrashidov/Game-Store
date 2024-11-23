@@ -1,24 +1,51 @@
-<div class="card glass w-60">
+<div class="card glass w-60 relative" (click)="navigateToGame(game?.id)">
   <figure>
     <img
-      src="https://placehold.co/250x350?font=oswald"
+      src="https://placehold.co/250x300?font=oswald"
       alt="car!"
       width="240px"
       height="142px"
     />
   </figure>
   <div class="card-body p-4">
-    <div class="tooltip tooltip-bottom" [attr.data-tip]="game?.name">
+    <div
+      class="tooltip tooltip-bottom flex flex-nowrap items-center justify-center"
+      [attr.data-tip]="game?.name"
+    >
       <h3
         class="card-title whitespace-nowrap overflow-hidden text-ellipsis block"
       >
         {{ game?.name }}
       </h3>
+      @if (game?.discount) {
+      <div
+        class="badge badge-error text-white whitespace-nowrap ml-1 absolute -top-72 right-0 z-10"
+      >
+        {{ game?.discount }}% off
+      </div>
+      }
     </div>
-    <div class="card-actions justify-center">
-      <a [routerLink]="['/game/view', game?.id]">
-        <button class="btn btn-neutral btn-outline w-48">Learn more</button>
-      </a>
+    <div class="flex items-center justify-between flex-col">
+      @if (game?.discount && game?.price) {
+      <div class="flex items-center">
+        <div class="text-black text-xl font-bold">
+          ${{ game?.price | priceWithDiscount : game?.discount || 0 }}
+        </div>
+        <div class="text-sm text-black line-through ml-3">
+          ${{ game?.price }}
+        </div>
+      </div>
+      } @else {
+      <div class="text-xl font-bold text-black">${{ game?.price }}</div>
+      }
+      <div class="card-actions justify-center mt-2">
+        <button
+          class="btn btn-neutral btn-outline w-48"
+          (click)="addToCart(game?.id); $event.stopPropagation()"
+        >
+          Add to cart
+        </button>
+      </div>
     </div>
   </div>
 </div>
