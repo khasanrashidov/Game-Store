@@ -7,7 +7,6 @@ import { GameModel } from '../../core/models/game/game.model';
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-  title = 'Games';
   games: GameModel[] = [
     {
       id: '1',

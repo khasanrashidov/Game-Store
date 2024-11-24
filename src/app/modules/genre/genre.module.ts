@@ -5,6 +5,7 @@ import { GenreRoutingModule } from './genre-routing.module';
 import { GenreListComponent } from './components/genre-list/genre-list.component';
 import { GenreViewComponent } from './components/genre-view/genre-view.component';
 import { GenreCreateComponent } from './components/genre-create/genre-create.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { GenreCreateComponent } from './components/genre-create/genre-create.com
   ],
   imports: [
     CommonModule,
-    GenreRoutingModule
+    GenreRoutingModule,
+    SharedModule
   ]
 })
 export class GenreModule { }

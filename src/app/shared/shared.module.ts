@@ -5,13 +5,14 @@ import { RouterModule } from '@angular/router';
 import { GameCardComponent } from './components/game-card/game-card.component';
 import { TruncateTextPipe } from './pipes/truncate-text/truncate-text.pipe';
 import { PriceWithDiscountPipe } from './pipes/price-with-discount/price-with-discount.pipe';
+import { GeneralCardComponent } from './components/general-card/general-card.component';
 
-const components = [GameCardComponent];
-const pipes = [TruncateTextPipe, PriceWithDiscountPipe];
+const COMPONENTS = [GameCardComponent, GeneralCardComponent];
+const PIPES = [TruncateTextPipe, PriceWithDiscountPipe];
 
 @NgModule({
-  declarations: [...components, ...pipes],
+  declarations: [...COMPONENTS, ...PIPES,],
   imports: [CommonModule, RouterModule],
-  exports: [...components, ...pipes],
+  exports: [...COMPONENTS, ...PIPES],
 })
 export class SharedModule { }

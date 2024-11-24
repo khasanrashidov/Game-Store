@@ -1,1 +1,19 @@
-<p>genre-list works!</p>
+<div class="breadcrumbs text-sm pl-7 pb-5">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li>Genre</li>
+    <li>List</li>
+  </ul>
+</div>
+<div class="items-container">
+  <div class="items">
+    @for(genre of genres; track genre.id) {
+    <app-general-card
+      [title]="genre.name"
+      [id]="genre.id"
+      description="Show all {{ genre.name }} games"
+      [navigationLink]="'/genre/list/' + genre.id + '/games'"
+    ></app-general-card>
+    }
+  </div>
+</div>

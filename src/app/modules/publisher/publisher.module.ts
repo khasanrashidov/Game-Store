@@ -5,6 +5,7 @@ import { PublisherRoutingModule } from './publisher-routing.module';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
 import { PublisherViewComponent } from './components/publisher-view/publisher-view.component';
 import { PublisherCreateComponent } from './components/publisher-create/publisher-create.component';
+import { SharedModule } from "../../shared/shared.module";
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { PublisherCreateComponent } from './components/publisher-create/publishe
   ],
   imports: [
     CommonModule,
-    PublisherRoutingModule
+    PublisherRoutingModule,
+    SharedModule
   ]
 })
 export class PublisherModule { }

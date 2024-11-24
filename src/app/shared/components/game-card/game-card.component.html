@@ -1,8 +1,8 @@
 <div class="card glass w-60 relative" (click)="navigateToGame(game?.id)">
   <figure>
     <img
-      src="https://placehold.co/250x300?font=oswald"
-      alt="car!"
+      src="https://placehold.co/250x300?text={{ game?.name }}&font=oswald"
+      alt="{{ game?.name }}"
       width="240px"
       height="142px"
     />
@@ -17,14 +17,14 @@
       >
         {{ game?.name }}
       </h3>
-      @if (game?.discount) {
-      <div
-        class="badge badge-error text-white whitespace-nowrap ml-1 absolute -top-72 right-0 z-10"
-      >
-        {{ game?.discount }}% off
-      </div>
-      }
     </div>
+    @if (game?.discount) {
+    <div
+      class="badge badge-error text-white whitespace-nowrap mr-4 absolute top-4 right-0 z-10"
+    >
+      {{ game?.discount }}% off
+    </div>
+    }
     <div class="flex items-center justify-between flex-col">
       @if (game?.discount && game?.price) {
       <div class="flex items-center">

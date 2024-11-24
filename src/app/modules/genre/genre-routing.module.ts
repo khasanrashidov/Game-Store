@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { GenreListComponent } from './components/genre-list/genre-list.component';
+import { GenreCreateComponent } from './components/genre-create/genre-create.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,10 @@ const routes: Routes = [
     path: 'list',
     component: GenreListComponent,
   },
+  {
+    path: 'create',
+    component: GenreCreateComponent
+  }
 ];
 
 @NgModule({

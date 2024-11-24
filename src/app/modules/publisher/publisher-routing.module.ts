@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
+import { PublisherCreateComponent } from './components/publisher-create/publisher-create.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,10 @@ const routes: Routes = [
     path: 'list',
     component: PublisherListComponent,
   },
+  {
+    path: 'create',
+    component: PublisherCreateComponent,
+  }
 ];
 
 @NgModule({

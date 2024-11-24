@@ -10,7 +10,7 @@ import { GameModel } from '../../../core/models/game/game.model';
 export class GameCardComponent {
   @Input() game: GameModel | null = null;
 
-  constructor(private router: Router) { }
+  constructor(private readonly _router: Router) { }
 
   addToCart(gameId: string | undefined): void {
     console.log('Game added to cart:', gameId);
@@ -18,7 +18,7 @@ export class GameCardComponent {
 
   navigateToGame(gameId: string | undefined): void {
     if (gameId) {
-      this.router.navigate(['/game/view', gameId]);
+      this._router.navigate(['/game/view', gameId]);
     }
   }
 }

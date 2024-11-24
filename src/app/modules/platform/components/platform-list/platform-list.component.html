@@ -1,1 +1,19 @@
-<p>platform-list works!</p>
+<div class="breadcrumbs text-sm pl-7 pb-5">
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li>Platform</li>
+    <li>List</li>
+  </ul>
+</div>
+<div class="items-container">
+  <div class="items">
+    @for(platform of platforms; track platform.id) {
+    <app-general-card
+      [title]="platform.type"
+      [id]="platform.id"
+      description="Show all {{ platform.type }} games"
+      [navigationLink]="'/platform/list/' + platform.id + '/games'"
+    ></app-general-card>
+    }
+  </div>
+</div>

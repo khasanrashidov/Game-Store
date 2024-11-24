@@ -31,3 +31,13 @@ app-sidebar {
   background: oklch(var(--b2));
   border-right: 1px solid oklch(var(--nc));
 }
+
+.dropdown {
+  position: fixed;
+  z-index: 1;
+  bottom: 50px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}

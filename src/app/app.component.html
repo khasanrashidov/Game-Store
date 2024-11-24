@@ -8,3 +8,32 @@
   </div>
   <app-footer></app-footer>
 </div>
+
+<div class="dropdown dropdown-top">
+  <div tabindex="0" role="button" class="btn btn-neutral m-1 h-16">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 4.5v15m7.5-7.5h-15"
+      />
+    </svg>
+    Add
+  </div>
+  <ul
+    tabindex="0"
+    class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+  >
+    <li><a class="text-lg" href="game/create">New game</a></li>
+    <li><a class="text-lg" href="genre/create">New genre</a></li>
+    <li><a class="text-lg" href="publisher/create">New publisher</a></li>
+    <li><a class="text-lg" href="platform/create">New platform</a></li>
+  </ul>
+</div>

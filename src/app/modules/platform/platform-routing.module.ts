@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { PlatformListComponent } from './components/platform-list/platform-list.component';
+import { PlatformCreateComponent } from './components/platform-create/platform-create.component';
 
 const routes: Routes = [
   {
@@ -12,6 +14,10 @@ const routes: Routes = [
     path: 'list',
     component: PlatformListComponent,
   },
+  {
+    path: 'create',
+    component: PlatformCreateComponent,
+  }
 ];
 
 @NgModule({
