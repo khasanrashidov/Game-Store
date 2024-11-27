@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { PlatformListComponent } from './components/platform-list/platform-list.component';
 import { PlatformCreateComponent } from './components/platform-create/platform-create.component';
+import { PlatformViewComponent } from './components/platform-view/platform-view.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
   {
     path: 'create',
     component: PlatformCreateComponent,
-  }
+  },
+  {
+    path: 'view/:id',
+    component: PlatformViewComponent,
+  },
 ];
 
 @NgModule({

@@ -112,7 +112,7 @@ export class GameViewComponent implements OnInit {
     },
   ];
 
-  game: any;
+  game: GameModel | null = null;
 
   constructor(private readonly _route: ActivatedRoute, private readonly _router: Router) { }
 
@@ -129,7 +129,8 @@ export class GameViewComponent implements OnInit {
   }
 
   getGameById(id: string): void {
-    this.game = this.games.find(game => game.id === id);
+    const foundGame = this.games.find(game => game.id === id);
+    this.game = foundGame !== undefined ? foundGame : null;
 
     if (!this.game) {
       this._router.navigate(['/error/not-found']);

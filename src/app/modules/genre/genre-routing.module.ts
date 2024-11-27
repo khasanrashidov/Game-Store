@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { GenreListComponent } from './components/genre-list/genre-list.component';
 import { GenreCreateComponent } from './components/genre-create/genre-create.component';
+import { GenreViewComponent } from './components/genre-view/genre-view.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,11 @@ const routes: Routes = [
   {
     path: 'create',
     component: GenreCreateComponent
-  }
+  },
+  {
+    path: 'view/:id',
+    component: GenreViewComponent,
+  },
 ];
 
 @NgModule({

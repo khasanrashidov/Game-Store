@@ -2,27 +2,28 @@
   <div class="breadcrumbs text-sm">
     <ul>
       <li><a href="/">Home</a></li>
-      <li>Game</li>
+      <li><a href="/game/list">Game</a></li>
       <li>View</li>
     </ul>
   </div>
+  <h2 class="font-bold text-2xl">Game Details</h2>
   <div class="game-view__id flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game ID:</h2>
-    <p>{{ game.id }}</p>
+    <p>{{ game?.id }}</p>
   </div>
   <div class="game-view__key flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game Key:</h2>
-    <p>{{ game.key }}</p>
+    <p>{{ game?.key }}</p>
   </div>
   <div class="game-view__name flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game Name:</h2>
-    <p>{{ game.name }}</p>
+    <p>{{ game?.name }}</p>
   </div>
   <div class="game-view__description flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Description:</h2>
-    @if (game.description) {
+    @if (game?.description) {
     <p class="w-96">
-      {{ game.description }}
+      {{ game?.description }}
     </p>
     } @else {
     <p class="w-96">No description available</p>
@@ -31,21 +32,21 @@
 
   <div class="game-view__price flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Price:</h2>
-    <p>${{ game.price }}</p>
+    <p>${{ game?.price }}</p>
   </div>
-  @if (game.discount) {
+  @if (game?.discount) {
   <div class="game-view__price flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Discount:</h2>
-    <p>{{ game.discount }}%</p>
+    <p>{{ game?.discount }}%</p>
   </div>
   <div class="game-view__price-with-discount flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Price with discount:</h2>
-    <p>${{ game.price | priceWithDiscount : game.discount }}</p>
+    <p>${{ game?.price | priceWithDiscount : game?.discount }}</p>
   </div>
   }
   <div class="game-view__stock flex gap-4">
     <h2 class="font-bold w-44">Stock:</h2>
-    <p>{{ game.unitInStock }}</p>
+    <p>{{ game?.unitInStock }}</p>
   </div>
 
   <div class="game-view__action-buttons flex flex-row gap-5 mt-8">

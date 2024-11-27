@@ -3,12 +3,17 @@ import { RouterModule } from "@angular/router";
 
 import { GameViewComponent } from "./components/game-view/game-view.component";
 import { GameCreateComponent } from "./components/game-create/game-create.component";
+import { HomeComponent } from "../home/home.component";
 
 const routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'list',
     pathMatch: 'full' as const,
+  },
+  {
+    path: 'list',
+    component: HomeComponent,
   },
   {
     path: 'view/:id',
