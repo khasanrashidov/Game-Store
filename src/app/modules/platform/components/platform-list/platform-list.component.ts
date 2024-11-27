@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+
 import { PlatformModel } from '../../../../core/models/platform/platform.model';
 
 @Component({
