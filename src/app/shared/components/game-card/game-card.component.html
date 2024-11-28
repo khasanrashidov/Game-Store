@@ -1,4 +1,4 @@
-<div class="card glass w-60 relative" (click)="navigateToGame(game?.id)">
+<a class="card glass w-60 relative" href="/game/view/{{ game?.id }}">
   <figure>
     <img
       src="https://placehold.co/250x300?text={{ game?.name }}&font=oswald"
@@ -48,4 +48,4 @@
       </div> -->
     </div>
   </div>
-</div>
+</a>
