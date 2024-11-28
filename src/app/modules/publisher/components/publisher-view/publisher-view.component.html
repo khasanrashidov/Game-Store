@@ -53,7 +53,7 @@
   </div>
 
   <div class="publisher-view__action-buttons flex flex-row gap-5 mt-8">
-    <button class="btn">
+    <button class="btn" [disabled]="isPublisherLoading || isPublisherDeleting">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -73,7 +73,7 @@
     <button
       class="btn"
       (click)="onRemovePublisher()"
-      [disabled]="isPublisherDeleting"
+      [disabled]="isPublisherDeleting || isPublisherLoading"
     >
       @if (isPublisherDeleting) {
       <span class="loading loading-spinner loading-md"></span>

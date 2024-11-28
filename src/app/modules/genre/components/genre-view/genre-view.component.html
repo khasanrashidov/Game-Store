@@ -31,7 +31,7 @@
   }
 
   <div class="genre-view__action-buttons flex flex-row gap-5 mt-8">
-    <button class="btn">
+    <button class="btn" [disabled]="isGenreLoading || isGenreDeleting">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -48,7 +48,11 @@
       </svg>
       Edit
     </button>
-    <button class="btn" (click)="onRemoveGenre()" [disabled]="isGenreDeleting">
+    <button
+      class="btn"
+      (click)="onRemoveGenre()"
+      [disabled]="isGenreLoading || isGenreDeleting"
+    >
       @if (isGenreDeleting) {
       <span class="loading loading-spinner loading-md"></span>
       } @else {
