@@ -107,7 +107,7 @@ export class GameViewComponent implements OnInit, OnDestroy {
       this._gameService.downloadGame(this.game.key).subscribe((blob) => {
         this.isDownloading = false;
 
-        saveAs(blob, `${this.game?.name || 'game'}.txt`);
+        saveAs(blob);
       });
     }
   }
