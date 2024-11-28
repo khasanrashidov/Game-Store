@@ -1,12 +1,13 @@
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { API_BASE_URL } from '../../../../variables';
 import { GameModel } from '../../../core/models/game/game.model';
 import { CreateGameModel } from '../../../core/models/game/create-game.model';
 import { UpdateGameModel } from '../../../core/models/game/update-game.model';
+import saveAs from 'file-saver';
 
 @Injectable({
   providedIn: 'root',
@@ -26,10 +27,35 @@ export class GameService {
     return this._http.get<GameModel>(`${API_BASE_URL}/api/games/${key}`);
   }
 
-  downloadGame(key: string): Observable<Blob> {
-    return this._http.get(`${API_BASE_URL}/api/games/${key}/file`, {
-      responseType: 'blob',
-    });
+  downloadGame(key: string): Observable<HttpResponse<Blob>> {
+    return this._http
+      .get(`${API_BASE_URL}/api/games/${key}/file`, {
+        responseType: 'blob',
+        observe: 'response',
+      })
+      .pipe(
+        map((response) => {
+          const filename = this.getFileNameFromContentDisposition(
+            response.headers.get('content-disposition') || '',
+            'txt'
+          );
+
+          const blob = new Blob([response.body as BlobPart], {
+            type:
+              response.headers.get('content-type') ||
+              'application/octet-stream',
+          });
+
+          saveAs(blob, filename);
+
+          return new HttpResponse({
+            body: blob,
+            headers: response.headers,
+            status: response.status,
+            statusText: response.statusText,
+          });
+        })
+      );
   }
 
   getGamesByGenreId(genreId: string): Observable<GameModel[]> {
@@ -66,5 +92,20 @@ export class GameService {
       `${API_BASE_URL}/api/games`,
       updateGameModel
     );
+  }
+
+  private getFileNameFromContentDisposition(
+    contentDisposition: string,
+    defaultType: string
+  ): string {
+    const matches = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/.exec(
+      contentDisposition
+    );
+
+    if (matches != null && matches[1]) {
+      return matches[1].replace(/['"]/g, '');
+    }
+
+    return 'Game.' + defaultType;
   }
 }
