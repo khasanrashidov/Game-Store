@@ -19,7 +19,8 @@ const routes: Routes = [
     data: { preload: true },
     loadChildren: () =>
       import('./modules/publisher/publisher.module').then(
-        (m) => m.PublisherModule),
+        (m) => m.PublisherModule
+      ),
   },
   {
     path: 'genre',
@@ -31,7 +32,9 @@ const routes: Routes = [
     path: 'platform',
     data: { preload: true },
     loadChildren: () =>
-      import('./modules/platform/platform.module').then((m) => m.PlatformModule),
+      import('./modules/platform/platform.module').then(
+        (m) => m.PlatformModule
+      ),
   },
   {
     path: 'error',
@@ -45,7 +48,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -9,7 +9,7 @@
   </figure>
   <div class="card-body p-4">
     <div
-      class="tooltip tooltip-bottom flex flex-nowrap items-center justify-center"
+      class="tooltip tooltip-top flex flex-nowrap items-center justify-center mb-4"
       [attr.data-tip]="game?.name"
     >
       <h3
@@ -28,7 +28,7 @@
     <div class="flex items-center justify-between flex-col">
       @if (game?.discount && game?.price) {
       <div class="flex items-center">
-        <div class="text-black text-xl font-bold">
+        <div class="text-black text-2xl font-bold">
           ${{ game?.price | priceWithDiscount : game?.discount || 0 }}
         </div>
         <div class="text-sm text-black line-through ml-3">
@@ -36,16 +36,16 @@
         </div>
       </div>
       } @else {
-      <div class="text-xl font-bold text-black">${{ game?.price }}</div>
+      <div class="text-2xl font-bold text-black">${{ game?.price }}</div>
       }
-      <div class="card-actions justify-center mt-2">
+      <!-- <div class="card-actions justify-center mt-2">
         <button
           class="btn btn-neutral btn-outline w-48"
           (click)="addToCart(game?.id); $event.stopPropagation()"
         >
           Add to cart
         </button>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

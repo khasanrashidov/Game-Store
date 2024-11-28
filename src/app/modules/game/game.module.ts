@@ -9,5 +9,6 @@ import { SharedModule } from "../../shared/shared.module";
 @NgModule({
   declarations: [GameViewComponent, GameCreateComponent],
   imports: [CommonModule, GameRoutingModule, SharedModule],
+  providers: []
 })
 export class GameModule { }

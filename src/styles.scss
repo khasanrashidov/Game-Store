@@ -22,3 +22,10 @@
     background-color: oklch(var(--b3)); /* Track color */
   }
 }
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}

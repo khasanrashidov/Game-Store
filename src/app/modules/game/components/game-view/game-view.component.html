@@ -9,30 +9,48 @@
   <h2 class="font-bold text-2xl">Game Details</h2>
   <div class="game-view__id flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game ID:</h2>
+    @if (!isLoading) {
     <p>{{ game?.id }}</p>
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
   </div>
   <div class="game-view__key flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game Key:</h2>
+    @if (!isLoading) {
     <p>{{ game?.key }}</p>
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
   </div>
   <div class="game-view__name flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Game Name:</h2>
+    @if (!isLoading){
     <p>{{ game?.name }}</p>
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
   </div>
   <div class="game-view__description flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Description:</h2>
-    @if (game?.description) {
+    @if (!isLoading) { @if (game?.description) {
     <p class="w-96">
       {{ game?.description }}
     </p>
     } @else {
     <p class="w-96">No description available</p>
+    } } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
     }
   </div>
 
   <div class="game-view__price flex gap-4">
     <h2 class="font-bold" class="font-bold w-44">Price:</h2>
+    @if (!isLoading) {
     <p>${{ game?.price }}</p>
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
   </div>
   @if (game?.discount) {
   <div class="game-view__price flex gap-4">
@@ -46,16 +64,68 @@
   }
   <div class="game-view__stock flex gap-4">
     <h2 class="font-bold w-44">Stock:</h2>
+    @if (!isLoading) {
     <p>{{ game?.unitInStock }}</p>
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
+  </div>
+
+  <div class="game-view__genres flex gap-4">
+    <h2 class="font-bold w-44">Genres:</h2>
+    @if (!isLoading) { @for (genre of genres; track genre.id) {
+    <a
+      href="/genre/view/{{ genre.id }}"
+      target="_blank"
+      class="badge badge-outline"
+      ># {{ genre.name }}</a
+    >
+    } @empty {
+    <p>No genres available</p>
+    } } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
+  </div>
+
+  <div class="game-view__platforms flex gap-4">
+    <h2 class="font-bold w-44">Platforms:</h2>
+    @if (!isLoading) { @for (platform of platforms; track platform.id) {
+    <a
+      href="/platform/view/{{ platform.id }}"
+      target="_blank"
+      class="badge badge-outline"
+      ># {{ platform.type }}</a
+    >
+    } @empty {
+    <p>No platforms available</p>
+    } } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
+  </div>
+
+  <div class="game-view__publisher flex gap-4">
+    <h2 class="font-bold w-44">Publisher:</h2>
+    @if (!isLoading) {
+    <a
+      href="/publisher/view/{{ publisher?.companyName }}"
+      target="_blank"
+      class="badge badge-outline"
+      ># {{ publisher?.companyName }}</a
+    >
+    } @else {
+    <ng-container *ngTemplateOutlet="loadingSkeleton"></ng-container>
+    }
   </div>
 
   <div class="game-view__action-buttons flex flex-row gap-5 mt-8">
     <a
       role="button"
       class="btn game-view__document flex gap-4"
-      href="path/to/document.txt"
-      download
+      (click)="onDownloadGameFile()"
     >
+      @if (isDownloading) {
+      <span class="loading loading-spinner loading-md"></span>
+      } @else {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -70,7 +140,7 @@
           d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m.75 12 3 3m0 0 3-3m-3 3v-6m-1.5-9H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z"
         />
       </svg>
-      Download Game Information</a
+      } Download Game Information</a
     >
     <button class="btn">
       <svg
@@ -89,7 +159,10 @@
       </svg>
       Edit
     </button>
-    <button class="btn">
+    <button class="btn" (click)="onRemoveGame()" [disabled]="isDeleting">
+      @if (isDeleting) {
+      <span class="loading loading-spinner loading-md"></span>
+      } @else {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -104,7 +177,11 @@
           d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
         />
       </svg>
-      Remove
+      } Remove
     </button>
   </div>
 </div>
+
+<ng-template #loadingSkeleton>
+  <div class="skeleton h-4 w-96"></div>
+</ng-template>

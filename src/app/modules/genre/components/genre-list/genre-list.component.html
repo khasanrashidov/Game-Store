@@ -6,6 +6,11 @@
   </ul>
 </div>
 <div class="items-container">
+  @if (isLoading) {
+  <div class="loading-container">
+    <span class="loading loading-spinner loading-lg"></span>
+  </div>
+  }
   <div class="items">
     @for(genre of genres; track genre.id) {
     <app-general-card
