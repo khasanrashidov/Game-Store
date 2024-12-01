@@ -5,19 +5,20 @@ import { PublisherRoutingModule } from './publisher-routing.module';
 import { PublisherListComponent } from './components/publisher-list/publisher-list.component';
 import { PublisherViewComponent } from './components/publisher-view/publisher-view.component';
 import { PublisherCreateComponent } from './components/publisher-create/publisher-create.component';
-import { SharedModule } from "../../shared/shared.module";
-
+import { SharedModule } from '../../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     PublisherListComponent,
     PublisherViewComponent,
-    PublisherCreateComponent
+    PublisherCreateComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     PublisherRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
-export class PublisherModule { }
+export class PublisherModule {}

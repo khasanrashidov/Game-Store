@@ -162,7 +162,7 @@
     </button>
     <button
       class="btn"
-      (click)="onRemoveGame()"
+      onclick="confirmDeletionDialog.showModal()"
       [disabled]="isLoading || isDeleting"
     >
       @if (isDeleting) {
@@ -184,6 +184,22 @@
       </svg>
       } Remove
     </button>
+    <dialog id="confirmDeletionDialog" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">
+          Are you sure you want to remove this game?
+        </h3>
+        <p class="py-4">This action cannot be undone.</p>
+        <div class="modal-action">
+          <form method="dialog" class="flex gap-4">
+            <button class="btn">Cancel</button>
+            <button class="btn btn-error" (click)="onRemoveGame()">
+              Remove
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
   </div>
 </div>
 

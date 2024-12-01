@@ -20,6 +20,11 @@ const routes: Routes = [
     component: PublisherCreateComponent,
   },
   {
+    path: 'update/:id',
+    component: PublisherCreateComponent,
+    pathMatch: 'full',
+  },
+  {
     path: 'view/:id',
     component: PublisherViewComponent,
   },
@@ -27,6 +32,6 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class PublisherRoutingModule { }
+export class PublisherRoutingModule {}

@@ -53,7 +53,11 @@
   </div>
 
   <div class="publisher-view__action-buttons flex flex-row gap-5 mt-8">
-    <button class="btn" [disabled]="isPublisherLoading || isPublisherDeleting">
+    <button
+      class="btn"
+      [disabled]="isPublisherLoading || isPublisherDeleting"
+      [routerLink]="'/publisher/update/' + publisher?.companyName"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -72,7 +76,7 @@
     </button>
     <button
       class="btn"
-      (click)="onRemovePublisher()"
+      onclick="confirmDeletionDialog.showModal()"
       [disabled]="isPublisherDeleting || isPublisherLoading"
     >
       @if (isPublisherDeleting) {
@@ -94,6 +98,22 @@
       </svg>
       } Remove
     </button>
+    <dialog id="confirmDeletionDialog" class="modal">
+      <div class="modal-box">
+        <h3 class="text-lg font-bold">
+          Are you sure you want to remove this publisher?
+        </h3>
+        <p class="py-4">This action cannot be undone.</p>
+        <div class="modal-action">
+          <form method="dialog" class="flex gap-4">
+            <button class="btn">Cancel</button>
+            <button class="btn btn-error" (click)="onRemovePublisher()">
+              Remove
+            </button>
+          </form>
+        </div>
+      </div>
+    </dialog>
   </div>
   <br />
   <div>

@@ -1,1 +1,110 @@
-<p>publisher-create works!</p>
+<div class="max-w-2xl mx-auto p-4">
+  <h2 class="text-2xl font-bold mb-6">
+    {{ isPublisherUpdate ? "Update The Publisher" : "Create New Publisher" }}
+  </h2>
+
+  <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()" class="space-y-4">
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text font-bold">
+          Company Name
+          <span class="text-error">*</span>
+        </span>
+      </label>
+      <input
+        type="text"
+        [formControlName]="'companyName'"
+        class="input input-bordered w-full"
+        placeholder="Enter company name"
+        [ngClass]="{
+          'input-error': publisherForm.controls.companyName.touched &&
+                        (publisherForm.controls.companyName.errors?.['required'] ||
+                         publisherForm.controls.companyName.errors?.['maxlength'])
+        }"
+      />
+      @if (publisherForm.controls.companyName.touched &&
+      publisherForm.controls.companyName.errors) {
+      <label class="label flex flex-col items-start">
+        @if (publisherForm.controls.companyName.errors['required']) {
+        <span class="label-text-alt text-error">
+          Company name is required
+        </span>
+        } @if (publisherForm.controls.companyName.errors['maxlength']) {
+        <span class="label-text-alt text-error">
+          Company name can be maximum 128 characters
+        </span>
+        }
+      </label>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text font-bold">Homepage</span>
+      </label>
+      <input
+        type="url"
+        [formControlName]="'homePage'"
+        class="input input-bordered w-full"
+        placeholder="https://example.com"
+        [ngClass]="{
+          'input-error': publisherForm.controls.homePage.touched &&
+                        publisherForm.controls.homePage.errors?.['maxlength']
+        }"
+      />
+      @if (publisherForm.controls.homePage.touched &&
+      publisherForm.controls.homePage.errors) {
+      <label class="label flex flex-col items-start">
+        @if (publisherForm.controls.homePage.errors['pattern']) {
+        <span class="label-text-alt text-error">
+          Please enter a valid URL starting with http:// or https://
+        </span>
+        } @if (publisherForm.controls.homePage.errors['maxlength']) {
+        <span class="label-text-alt text-error">
+          Homepage can be maximum 512 characters
+        </span>
+        }
+      </label>
+      }
+    </div>
+
+    <div class="form-control">
+      <label class="label">
+        <span class="label-text font-bold">Description</span>
+      </label>
+      <textarea
+        [formControlName]="'description'"
+        class="textarea textarea-bordered h-24"
+        placeholder="Enter description"
+        [ngClass]="{
+          'textarea-error': publisherForm.controls.description.touched &&
+                           publisherForm.controls.description.errors?.['maxlength']
+        }"
+      ></textarea>
+      @if (publisherForm.controls.description.touched &&
+      publisherForm.controls.description.errors) {
+      <label class="label flex flex-col items-start">
+        @if (publisherForm.controls.description.errors['maxlength']) {
+        <span class="label-text-alt text-error">
+          Description can be maximum 2048 characters
+        </span>
+        }
+      </label>
+      }
+    </div>
+
+    <div class="form-control mt-6 pt-6">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!publisherForm.valid || isSubmitting"
+      >
+        @if (isSubmitting) {
+        <span class="loading loading-spinner"></span>
+        {{ isPublisherUpdate ? "Updating..." : "Creating..." }}} @else {
+        {{ isPublisherUpdate ? "Update the publisher" : " Create publisher" }}
+        }
+      </button>
+    </div>
+  </form>
+</div>

@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 
 import { API_BASE_URL } from '../../../../variables';
 import { PublisherModel } from '../../../core/models/publisher/publisher.model';
+import { CreatePublisherModel } from '../../../core/models/publisher/create-publisher.model';
+import { UpdatePublisherModel } from '../../../core/models/publisher/update-publisher.model';
 
 @Injectable({
   providedIn: 'root',
@@ -30,5 +32,23 @@ export class PublisherService {
 
   deletePublisher(id: string): Observable<void> {
     return this._http.delete<void>(`${API_BASE_URL}/api/publishers/${id}`);
+  }
+
+  createPublisher(
+    createPublisherModel: CreatePublisherModel
+  ): Observable<PublisherModel> {
+    return this._http.post<PublisherModel>(
+      `${API_BASE_URL}/api/publishers`,
+      createPublisherModel
+    );
+  }
+
+  updatePublisher(
+    updatePublisherModel: UpdatePublisherModel
+  ): Observable<void> {
+    return this._http.put<void>(
+      `${API_BASE_URL}/api/publishers`,
+      updatePublisherModel
+    );
   }
 }
